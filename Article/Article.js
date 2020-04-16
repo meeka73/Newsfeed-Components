@@ -112,3 +112,67 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const dataComponent = (titleText, dateText, paragraphText1, paragraphText2, paragraphText3) => {
+
+  // article div created 
+  const article = document.createElement('div');
+  article.classList.add('article');
+  
+  // header created
+  const titleHeader = document.createElement('h2');
+  titleHeader.textContent = titleText;
+  
+  // date element created
+  const dateContent = document.createElement('p');
+  dateContent.classList.add('date');
+  dateContent.textContent = dateText;
+  
+  // created paragraph tags
+  const paragraphOne = document.createElement('p');
+  paragraphOne.textContent = paragraphText1;
+  
+  const paragraphTwo = document.createElement('p');
+  paragraphTwo.textContent = paragraphText2;
+  
+  const paragraphThree = document.createElement('p');
+  paragraphThree.textContent = paragraphText3;
+  
+  // button span element created
+  const button = document.createElement('span');
+  button.classList.add('expandButton');
+  button.textContent = ('\u25bc');
+  
+  // event added to button
+  button.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+    button.textContent = '\u25bc';
+  })
+  
+  // elements appended
+  article.appendChild(titleHeader);
+  article.appendChild(dateContent);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(button);
+  
+  return article;
+  
+  }
+  
+  // new article added to array
+  data.push({
+    title: 'New Article Title',
+    date: 'Feb 18, 2020',
+    firstParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    secondParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    thirdParagraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  });
+  
+  // mapping over data
+  const articles = document.querySelector('.articles');
+  
+  data.forEach((currentItem) => {
+    const newData = dataComponent(currentItem.title, currentItem.date, currentItem.firstParagraph, currentItem.secondParagraph, currentItem.thirdParagraph)
+    articles.appendChild(newData);
+  })
